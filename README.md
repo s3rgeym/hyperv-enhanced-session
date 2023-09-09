@@ -22,10 +22,9 @@ sudo systemctl restart xrdp
 
 ## Hyper-V Settings
 
-Setup Hyper-V Transport using PowerShell:
-
 ```ps
-Set-VM -VMName "NameVM" -EnhancedSessionTransportType HvSocket
+Set-VMhost -EnableEnhancedSessionMode $True
+Set-VM -VMName <NameVM> -EnhancedSessionTransportType HvSocket
 ```
 
 ## Links
