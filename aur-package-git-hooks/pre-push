@@ -1,5 +1,8 @@
 #!/bin/bash
 # shellcheck disable=SC2034
+# cd .git/submodules/aur-package.git
+# rm -rf hooks
+# ln -s ../../../aur-package-git-hooks hooks
 if read -r local_ref local_sha remote_ref remote_sha; then
   if [ master == "${remote_ref##*\/}" ]; then
     updpkgsums
