@@ -1,0 +1,3 @@
+[submodule "aur-package.git"]
+	path = aur-package.git
+	url = https://aur.archlinux.org/hyperv-enhanced-session.git
