@@ -1,17 +1,12 @@
 #!/bin/bash
 # shellcheck disable=SC2034
-# cd .git/submodules/aur-package.git
-# rm -rf hooks
-# ln -s ../../../aur-package-git-hooks hooks
-
 if read -r local_ref local_sha remote_ref remote_sha; then
   if [[ "${remote_ref##*\/}" == v*.*.* ]]; then
+    cd ./aur-package.git || exit 1
     updpkgsums
-    # README.md часто изменяется, поэтому для него отключаем проверку суммы. В списке файлов он последний.
-    N=$(grep -n sha256sums PKGBUILD | cut -d: -f1)
-    sed -ri "$N,\$s/[a-z0-9]+'\)/SKIP')/" PKGBUILD
     makepkg -c --printsrcinfo >.SRCINFO
     git add PKGBUILD .SRCINFO
-    git commit --amend --no-edit
+    git commit -m "bump version"
+    git push
   fi
 fi
