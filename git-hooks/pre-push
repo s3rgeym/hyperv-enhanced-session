@@ -1,12 +1,15 @@
 #!/bin/bash
 # shellcheck disable=SC2034
 if read -r local_ref local_sha remote_ref remote_sha; then
-  if [[ "${remote_ref##*\/}" == v*.*.* ]]; then
+  ref="${remote_ref##*\/}"
+  if [[ $ref == *.*.* ]]; then
     cd ./aur-package.git || exit 1
+    rm -rf ./*
+    cp ../PKGBUILD .
     updpkgsums
     makepkg -c --printsrcinfo >.SRCINFO
-    git add PKGBUILD .SRCINFO
-    git commit -m "bump version"
+    git add . # PKGBUILD .SRCINFO
+    git commit -am "new realease ${ref}"
     git push
   fi
 fi

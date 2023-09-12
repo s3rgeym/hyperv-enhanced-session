@@ -19,7 +19,6 @@ sed -i_orig -e 's/port=3389/port=vsock:\/\/-1:3389 tcp:\/\/:3389/g' \
   -e 's/security_layer=negotiate/security_layer=rdp/g' \
   -e 's/crypt_level=high/crypt_level=none/g' \
   -e 's/bitmap_compression=true/bitmap_compression=false/g' \
-  -e 's/^new_cursors=true/new_cursors=false/g' \
   /etc/xrdp/xrdp.ini
 
 # rename the redirected drives to 'shared-drives'
